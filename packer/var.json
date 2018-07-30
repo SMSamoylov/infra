@@ -1,0 +1,5 @@
+{
+  "proj_id": "infra-205114",
+  "source_if": "ubuntu-1604-lts",
+  "machine_tp": "f1-micro"
+}
