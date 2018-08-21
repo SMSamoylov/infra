@@ -33,14 +33,3 @@ variable appuser {
   description = "SSH user"
 }
 
-#variable "count" { 
-#   default = 2 
-#}
-#
-#
-#variable "hostnames" { 
-#   default = { 
-#   "0" = "reddit-app"
-#   "1" = "reddit-app-2"
-# }
-

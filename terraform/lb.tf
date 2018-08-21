@@ -3,7 +3,7 @@ resource "google_compute_instance_group" "app" {
 
   description = "Terraform my instance group"
 
-  instances = ["${google_compute_instance.app.self_link}", "${google_compute_instance.app-2.self_link}"]
+  instances = ["${google_compute_instance.inst.*.self_link}"]
 
   zone = "europe-west1-c"
 
@@ -18,26 +18,17 @@ resource "google_compute_global_address" "lb-external-address" {
   name = "lb-1"
 }
 
-
 resource "google_compute_health_check" "health-check" {
-
-  name               = "hc1"
+  name = "hc1"
 
   check_interval_sec = 5
 
-  timeout_sec        = 5
-
-
+  timeout_sec = 5
 
   http_health_check {
-
     port = "9292"
-
   }
-
 }
-
-
 
 resource "google_compute_backend_service" "web-service" {
   name = "puma-service"
@@ -66,7 +57,6 @@ resource "google_compute_url_map" "web-map" {
     name = "puma-server"
 
     default_service = "${google_compute_backend_service.web-service.self_link}"
-
   }
 }
 
@@ -91,17 +81,13 @@ resource "google_compute_firewall" "default" {
 
   network = "default"
 
-  
-allow {
-
+  allow {
     protocol = "tcp"
 
-    ports    = ["80"]
-
+    ports = ["80"]
   }
-
 
   source_ranges = ["0.0.0.0/0"]
 
-  target_tags = ["http" , "puma-server"]
+  target_tags = ["http", "puma-server"]
 }
