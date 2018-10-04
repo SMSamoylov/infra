@@ -1,0 +1,17 @@
+{
+"app": {
+    "hosts": ["35.195.72.130"],
+     "vars": {
+        "ansible_ssh_user": "appuser",
+        "ansible_ssh_private_key_file":"~/.ssh/id.rsa"
+        }
+    },
+
+"db": {
+    "hosts": ["35.205.93.183"],
+     "vars": {
+        "ansible_ssh_user": "appuser",
+        "ansible_ssh_private_key_file": "~/.ssh/id.rsa"
+        }
+    }
+}
